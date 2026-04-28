@@ -16,7 +16,7 @@ wordlist/
 │   ├── common.txt           # General weak passwords (1.3M+ entries)
 │   ├── common_small.txt     # Top 1000+ most common weak passwords
 │   ├── web.txt              # Web application common passwords (450+)
-│   ├── ssh.txt              # SSH brute force passwords (400+)
+│   ├── ssh.txt              # SSH brute force passwords (79K+)
 │   ├── rdp.txt              # RDP common passwords (209K+)
 │   ├── ftp.txt              # FTP default/common passwords (410+)
 │   ├── databases.txt        # Database default passwords (430+)
