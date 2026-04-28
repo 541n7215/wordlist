@@ -14,18 +14,18 @@ wordlist/
 │
 ├── passwords/              # Password wordlists (one password per line)
 │   ├── common.txt           # General weak passwords (1.3M+ entries)
-│   ├── common_small.txt     # Top 1000 most common weak passwords
-│   ├── web.txt              # Web application common passwords
-│   ├── ssh.txt              # SSH honeypot collected passwords (cleaned)
-│   ├── rdp.txt              # RDP common passwords
-│   ├── ftp.txt              # FTP default/common passwords
-│   ├── databases.txt        # Database default passwords (MySQL, PostgreSQL, Redis, etc.)
-│   ├── iot.txt              # IoT/smart home/industrial default passwords
-│   └── chinese_weak.txt     # Chinese-context weak passwords (pinyin, lucky numbers)
+│   ├── common_small.txt     # Top 1000+ most common weak passwords
+│   ├── web.txt              # Web application common passwords (450+)
+│   ├── ssh.txt              # SSH brute force passwords (400+)
+│   ├── rdp.txt              # RDP common passwords (209K+)
+│   ├── ftp.txt              # FTP default/common passwords (410+)
+│   ├── databases.txt        # Database default passwords (430+)
+│   ├── iot.txt              # IoT/smart home/industrial default passwords (430+)
+│   └── chinese_weak.txt     # Chinese-context weak passwords (530+)
 │
 ├── usernames/               # Username lists
-│   ├── common.txt           # General username list (81K+ entries)
-│   └── admin.txt            # Admin/common service account usernames
+│   ├── common.txt           # General username list (82K+ entries)
+│   └── admin.txt            # Admin/common service account usernames (78)
 │
 ├── defaults/                # Default credentials (structured JSON)
 │   ├── ip_cameras.json      # IP camera/NVR default credentials
@@ -125,17 +125,18 @@ python3 tools/wordlist_stats.py passwords/*.txt --json
 
 | File | Entries | Description |
 |------|---------|-------------|
-| passwords/common.txt | 1.3M+ | General weak passwords (comprehensive) |
-| passwords/common_small.txt | 1,000 | Top 1000 most common |
-| passwords/ssh.txt | 79K+ | SSH honeypot collected (cleaned) |
-| passwords/rdp.txt | 209K+ | RDP common passwords |
-| passwords/web.txt | 111 | Web application passwords |
-| passwords/ftp.txt | 38 | FTP default passwords |
-| passwords/databases.txt | 49 | Database default passwords |
-| passwords/iot.txt | 81 | IoT/smart device passwords |
-| passwords/chinese_weak.txt | 162 | Chinese-context weak passwords |
-| usernames/common.txt | 81K+ | General usernames |
-| usernames/admin.txt | 71 | Admin account names |
+| passwords/common.txt | 1,310,522 | General weak passwords (comprehensive) |
+| passwords/common_small.txt | 1,316 | Top 1000+ most common |
+| passwords/ssh.txt | 79215 | SSH brute force passwords |
+| passwords/rdp.txt | 209,335 | RDP common passwords |
+| passwords/web.txt | 453 | Web application passwords |
+| passwords/ftp.txt | 413 | FTP default/common passwords |
+| passwords/databases.txt | 429 | Database default passwords |
+| passwords/iot.txt | 426 | IoT/smart device passwords |
+| passwords/chinese_weak.txt | 530 | Chinese-context weak passwords |
+| usernames/common.txt | 82,484 | General usernames |
+| usernames/admin.txt | 78 | Admin account names |
+| leaked/adobe_top100.txt | 100 | Adobe 2013 breach top 100 |
 
 ## 🔄 Workflow
 
@@ -161,12 +162,30 @@ python3 tools/wordlist_stats.py custom.txt
 
 ## 📝 Data Sources
 
-- **ssh_passwd.txt**: Collected from SSH honeypots (2015), cleaned and deduplicated
-- **common.txt**: Curated from multiple public sources (rockyou derivatives)
-- **rdp_passlist.txt**: RDP-specific weak passwords
+### Password Dictionaries
+- **common.txt**: Curated from multiple public sources (rockyou derivatives), 1.3M+ entries
+- **common_small.txt**: SecLists Pwdb_top-1000 + 2025-2026 breach data (NordPass, Cybernews, Specops)
+- **web.txt**: SecLists Pwdb_top-1000 + Cybernews 2025/2026 common passwords + Paul Reynolds 2026 top 150 + lucidar.me top 299 + NordPass 2025 top 200
+- **ssh.txt**: SecLists Pwdb_top-1000 + SecLists xato-net-10-million-usernames (common passwords) + default service credentials
+- **rdp.txt**: RDP-specific weak passwords from original repository
+- **ftp.txt**: SecLists Pwdb_top-1000 + FTP-specific default credentials
+- **databases.txt**: SecLists Pwdb_top-1000 + official default credentials (MySQL, PostgreSQL, Redis, MongoDB, MSSQL, Oracle, Elasticsearch)
+- **iot.txt**: SecLists Pwdb_top-1000 + SecLists default-passwords.csv + public device databases
+- **chinese_weak.txt**: SecLists Pwdb_top-1000 + generated Chinese weak passwords (pinyin patterns, lucky numbers, common surnames, brand passwords, gaming passwords)
+
+### Username Lists
+- **common.txt**: Original names list + SecLists Usernames/Names/names.txt + SecLists xato-net-10-million-usernames (top 2700+ common usernames)
+- **admin.txt**: Common admin/service account variants
+
+### Default Credentials
+- **routers.json**: SecLists Discovery/Web-Content/default-passwords.csv
+- **ip_cameras.json**: SecLists + public IP camera databases
+- **databases.json**: Official vendor documentation
+- **nas.json**: SecLists + manufacturer defaults
+- **iot.json**: SecLists + public IoT databases
+
+### Leaked Passwords
 - **adobe_top100.txt**: Top 100 from the Adobe 2013 data breach (130M accounts)
-- **router_default_password.md**: Originally sourced from portforward.com
-- **Default credentials**: Manually curated from vendor documentation
 
 ## 🤝 Contributing
 
